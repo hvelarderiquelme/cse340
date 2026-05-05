@@ -1,0 +1,28 @@
+{
+  "name": "package.json",
+  "version": "1.0.0",
+  "description": "Repository for course CSE 340",
+  "homepage": "https://github.com/hvelarderiquelme/cse340#readme",
+  "bugs": {
+    "url": "https://github.com/hvelarderiquelme/cse340/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hvelarderiquelme/cse340.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "ejs": "^5.0.2",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
