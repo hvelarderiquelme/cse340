@@ -40,8 +40,13 @@ app.get('/organizations', (req, res) => {
 });
 
 app.get('/projects', (req, res) => {
-    const title = 'Service Projects';
+    const title = 'Service Projects';  
     res.render('projects', { title });
+});
+
+app.get('/categories', (req,res) => {
+    const title = 'Categories';
+    res.render('categories', { title });
 });
 
 app.listen(PORT, () => {
