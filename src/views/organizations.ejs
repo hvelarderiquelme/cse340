@@ -1,11 +1,35 @@
 <%- include('partials/header') %>
-<main>
-    <h1><%= title %></h1>
-    <p>Here are a few of our partner organizations:</p>
-    <ul>
-        <li><img src="/images/brightfuture-logo.png" alt="BrightFuture Builders logo"><strong>BrightFuture Builders</strong>: info@brightfuture.org</li>
-        <li><img src="/images/greenharvest-logo.png" alt="GreenHarvest Growers logo"><strong>GreenHarvest Growers</strong>: contact@greenharvest.org</li>
-        <li><img src="/images/unityserve-logo.png" alt="UnityServe Volunteers logo"><strong>UnityServe Volunteers</strong>: hello@unityserve.org</li>
-    </ul>
+<main class="organizations-page">
+
+    <h1>Our Partner Organizations</h1>
+
+    <p class="intro">
+        Here are a few of our partner organizations:
+    </p>
+
+    <section class="organization-grid">
+        <article class="organization-card">
+            <img src="/images/brightfuture-logo.png"
+                 alt="BrightFuture Builders logo">
+            <h2>BrightFuture Builders</h2>
+            <p>Email: info@brightfuture.org</p>
+        </article>
+
+        <article class="organization-card">
+            <img src="/images/greenharvest-logo.png"
+                 alt="GreenHarvest Growers logo">
+            <h2>GreenHarvest Growers</h2>
+            <p>Email: contact@greenharvest.org</p>
+        </article>
+
+        <article class="organization-card">
+            <img src="/images/unityserve-logo.png"
+                 alt="UnityServe Volunteers logo">
+            <h2>UnityServe Volunteers</h2>
+            <p>Email: hello@unityserve.org</p>
+        </article>
+
+    </section>
+
 </main>
 <%- include('partials/footer') %>
