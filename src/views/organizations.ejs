@@ -8,27 +8,14 @@
     </p>
 
     <section class="organization-grid">
+        <% organizations.forEach(organization => { %>
         <article class="organization-card">
-            <img src="/images/brightfuture-logo.png"
-                 alt="BrightFuture Builders logo">
-            <h2>BrightFuture Builders</h2>
-            <p>Email: info@brightfuture.org</p>
+            <img src="/images/<%= organization.logo_filename%>"
+                 alt="<%= organization.name%>">
+            <h2><%= organization.name %></h2>
+            <p>Email: <%= organization.contact_email %></p>
         </article>
-
-        <article class="organization-card">
-            <img src="/images/greenharvest-logo.png"
-                 alt="GreenHarvest Growers logo">
-            <h2>GreenHarvest Growers</h2>
-            <p>Email: contact@greenharvest.org</p>
-        </article>
-
-        <article class="organization-card">
-            <img src="/images/unityserve-logo.png"
-                 alt="UnityServe Volunteers logo">
-            <h2>UnityServe Volunteers</h2>
-            <p>Email: hello@unityserve.org</p>
-        </article>
-
+        <% }); %>
     </section>
 
 </main>
