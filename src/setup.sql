@@ -24,20 +24,20 @@ VALUES
 -- Project Table
 -- ==============================
 
--- CREATE TABLE project (
--- 	project_id SERIAL PRIMARY KEY,
--- 	organization_id INTEGER NOT NULL, 
--- 	title VARCHAR(150) NOT NULL,
--- 	description TEXT NOT NULL,
--- 	location VARCHAR(255) NOT NULL,
--- 	date DATE NOT NULL,
+CREATE TABLE project (
+	project_id SERIAL PRIMARY KEY,
+	organization_id INTEGER NOT NULL, 
+	title VARCHAR(150) NOT NULL,
+	description TEXT NOT NULL,
+	location VARCHAR(255) NOT NULL,
+	date DATE NOT NULL,
 
--- 	CONSTRAINT fk_project_organization
---         FOREIGN KEY (organization_id)
---         REFERENCES organization(organization_id)
+	CONSTRAINT fk_project_organization
+        FOREIGN KEY (organization_id)
+        REFERENCES organization(organization_id)
 	
--- );
--- 
+);
+
 INSERT INTO project (
     organization_id,
     title,
@@ -164,3 +164,134 @@ VALUES
     '2026-09-03'
 );
 -- select * from project
+-- ==============================
+-- Category Table
+-- ==============================
+CREATE TABLE category (
+    category_id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL
+);
+
+-- ======================================
+-- Junction table project_category Table
+-- ======================================
+CREATE TABLE project_category (
+    project_id INTEGER NOT NULL,
+    category_id INTEGER NOT NULL,
+
+    PRIMARY KEY (project_id, category_id),
+
+    CONSTRAINT fk_project_category_project
+        FOREIGN KEY (project_id)
+        REFERENCES project(project_id),
+
+    CONSTRAINT fk_project_category_category
+        FOREIGN KEY (category_id)
+        REFERENCES category(category_id)
+);
+
+-- =========================================
+-- INSERT CATEGORIES
+-- =========================================
+
+INSERT INTO category (name)
+VALUES
+('Infrastructure'),
+('Environment'),
+('Education'),
+('Food Security'),
+('Community Support'),
+('Volunteer Work'),
+('Housing');
+
+
+-- =========================================
+-- ASSOCIATE PROJECTS WITH CATEGORIES
+-- =========================================
+-- Assumes project_id values are 1–15
+-- and category_id values are:
+--
+-- 1 = Infrastructure
+-- 2 = Environment
+-- 3 = Education
+-- 4 = Food Security
+-- 5 = Community Support
+-- 6 = Volunteer Work
+-- 7 = Housing
+-- =========================================
+
+INSERT INTO project_category (
+    project_id,
+    category_id
+)
+VALUES
+
+-- =========================================
+-- BrightFuture Builders Projects
+-- =========================================
+
+-- Community Center Renovation
+(1, 1),
+(1, 5),
+
+-- Affordable Housing Initiative
+(2, 7),
+(2, 5),
+
+-- Playground Restoration
+(3, 1),
+(3, 5),
+
+-- Bridge Safety Upgrade
+(4, 1),
+
+-- Solar School Retrofit
+(5, 2),
+(5, 3),
+
+-- =========================================
+-- GreenHarvest Growers Projects
+-- =========================================
+
+-- Downtown Rooftop Garden
+(6, 2),
+(6, 4),
+
+-- Community Greenhouse Program
+(7, 2),
+(7, 4),
+
+-- School Garden Expansion
+(8, 3),
+(8, 2),
+
+-- Neighborhood Compost Initiative
+(9, 2),
+
+-- Urban Orchard Project
+(10, 2),
+(10, 5),
+
+-- =========================================
+-- UnityServe Volunteers Projects
+-- =========================================
+
+-- Winter Clothing Drive
+(11, 5),
+(11, 6),
+
+-- Senior Support Visits
+(12, 5),
+(12, 6),
+
+-- Food Bank Volunteer Campaign
+(13, 4),
+(13, 6),
+
+-- Community Cleanup Day
+(14, 2),
+(14, 6),
+
+-- Back-to-School Supply Drive
+(15, 3),
+(15, 5);
