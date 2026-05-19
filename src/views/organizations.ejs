@@ -7,16 +7,17 @@
         Here are a few of our partner organizations:
     </p>
 
-    <section class="organization-grid">
+    <ul class="organization-grid">
         <% organizations.forEach(organization => { %>
-        <article class="organization-card">
-            <img src="/images/<%= organization.logo_filename%>"
-                 alt="<%= organization.name%>">
-            <h2><%= organization.name %></h2>
-            <p>Email: <%= organization.contact_email %></p>
-        </article>
+            <li class="organization-card">
+                <img src="/images/<%= organization.logo_filename%>"
+                     alt="<%= organization.name %> logo">
+                <a href="/organization/<%= organization.organization_id %>"> <%= organization.name %></a>
+                <p>Email: <%= organization.contact_email %></p>
+            </li>    
         <% }); %>
-    </section>
+    </ul>       
+    
 
 </main>
 <%- include('partials/footer') %>

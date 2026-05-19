@@ -146,6 +146,63 @@ main p {
     text-align: center;
 }
 
+
+.organizations-page ul{
+    list-style:none;
+    padding:0;
+    display:grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(280px, 1fr));
+    gap:2rem;
+}
+
+.organizations-page li{
+    background:var(--card-bg);
+    padding:2rem;
+    border-radius:18px;
+    box-shadow:var(--shadow);
+    transition:0.3s ease;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+}
+
+.organizations-page li:hover{
+    transform:translateY(-5px);
+    box-shadow:var(--hover-shadow);
+}
+
+/* LOGO IMAGE */
+.organizations-page li img{
+    width:120px;
+    height:120px;
+    object-fit:contain;
+    margin-bottom:1rem;
+}
+
+/* ORGANIZATION NAME LINK */
+.organizations-page li a{
+    display:block;
+    margin-top:0.5rem;
+    font-size:1.3rem;
+    font-weight:bold;
+    color:var(--primary);
+    text-decoration:none;
+    transition:0.3s ease;
+}
+
+.organizations-page li a:hover{
+    color:var(--secondary);
+}
+
+/* EMAIL TEXT */
+.organizations-page li p{
+    margin-top:1rem;
+    color:var(--light-text);
+    font-size:1rem;
+}
+
 .intro {
     margin-bottom: 3rem;
     font-size: 1.1rem;
