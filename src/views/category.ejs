@@ -1,0 +1,21 @@
+<%- include('partials/header')%>
+
+<main class="category-page">
+
+    <h1><%= title %></h1>
+
+    <ul class="category-projects">
+        <% categoryDetails.forEach(project => { %>
+
+            <li>
+                <a href="/project/<%= project.project_id %>">
+                    <%= project.title %>
+                </a>
+            </li>
+
+        <% }) %>
+    </ul>
+
+</main>
+
+<%- include('partials/footer')%>
