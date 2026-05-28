@@ -69,6 +69,7 @@ app.use((req, res, next) => {
     next(err);
 });
 
+
 // Global error handler
 app.use((err, req, res, next) => {
     // Log error details for debugging
