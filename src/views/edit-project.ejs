@@ -1,0 +1,91 @@
+<%- include ('partials/header')%>
+<main>
+    <h1><%= title %></h1>
+
+    <form action="/edit-project/<%= projectDetails.project_id %>" method="POST">
+
+        <!-- Hidden Project ID -->
+        <input 
+            type="hidden" 
+            name="projectId" 
+            value="<%= projectDetails.project_id %>"
+        >
+
+        <!-- Organizations -->
+        <div>
+            <label for="organizationId">Select Organization</label>
+
+            <select id="organizationId" name="organizationId" required>
+
+                <% organizations.forEach((organization) => { %>
+
+                    <option 
+                        value="<%= organization.organization_id %>"
+
+                        <%= organization.organization_id === projectDetails.organization_id
+                            ? 'selected'
+                            : '' %>
+                    >
+                        <%= organization.name %>
+                    </option>
+
+                <% }) %>
+
+            </select>
+        </div>
+
+        <!-- Title -->
+        <div>
+            <label for="title">Project Title</label>
+            <input 
+                type="text"
+                id="title"
+                name="title"
+                value="<%= projectDetails.title %>"
+                required
+            >
+        </div>
+
+        <!-- Description -->
+        <div>
+            <label for="description">Description</label>
+            <textarea 
+                id="description"
+                name="description"
+                rows="5"
+                required
+            ><%= projectDetails.description %></textarea>
+        </div>
+
+        <!-- Location -->
+        <div>
+            <label for="location">Location</label>
+            <input 
+                type="text"
+                id="location"
+                name="location"
+                value="<%= projectDetails.location %>"
+                required
+            >
+        </div>
+
+        <!-- Date -->
+        <div>
+            <label for="date">Date</label>
+            <input 
+                type="date"
+                id="date"
+                name="date"
+                value="<%= projectDetails.date.toISOString().split('T')[0] %>"
+                required
+            >
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit">
+            Update Project
+        </button>
+
+    </form>
+</main>
+<%- include ('partials/footer')%>

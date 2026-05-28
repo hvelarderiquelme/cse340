@@ -10,7 +10,9 @@ import {
   createProject,
   showNewProjectForm,
   processNewProjectForm,
-  projectValidation
+  projectValidation,
+  showEditProjectForm,
+  processEditProjectForm
 } from './controllers/projects.js';
 
 import {
@@ -63,6 +65,10 @@ router.post('/new-project', projectValidation, processNewProjectForm);
 router.get('/assign-categories/:projectId', showAssignCategoriesForm);
 //Route to process assign categories form
 router.post('/assign-categories/:projectId', processAssignCategoriesForm);
+//Route to show project info form
+router.get('/edit-project/:projectId', showEditProjectForm);
+//Route to process the project form
+router.post('/edit-project/:projectId', projectValidation, processEditProjectForm);
 
 
 export default router;
