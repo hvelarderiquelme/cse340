@@ -33,6 +33,7 @@ app.use(session({
     cookie: { maxAge: 60 * 60 * 1000 } // Session expires after 1 hour of inactivity
 }));
 app.use(flash);
+
 //Middleware to log all incoming requests
 app.use((req, res, next) => {
     if (NODE_ENV === 'development') {
