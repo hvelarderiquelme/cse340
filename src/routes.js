@@ -50,25 +50,25 @@ router.get('/organization/:id', showOrganizationDetailsPage);
 router.get('/project/:id', showProjectDetailsPage);
 router.get('/category/:id', showCategoryDetailsPage);
 // Route for new organization page
-router.get('/new-organization', showNewOrganizationForm);
+//router.get('/new-organization', showNewOrganizationForm);
 // Route to handle new organization form submission
-router.post('/new-organization', organizationValidation, processNewOrganizationForm);
+//router.post('/new-organization', organizationValidation, processNewOrganizationForm);
 //Route to display the edit-organization page
-router.get('/edit-organization/:id', showEditOrganizationForm);
+//router.get('/edit-organization/:id', showEditOrganizationForm);
 //Route to handle the edit organization for submission
-router.post('/edit-organization/:id', organizationValidation, processEditOrganizationForm);
+//router.post('/edit-organization/:id', organizationValidation, processEditOrganizationForm);
 //Route to display new project form
-router.get('/new-project', showNewProjectForm);
+//router.get('/new-project', showNewProjectForm);
 //Route to process new project form
-router.post('/new-project', projectValidation, processNewProjectForm);
+//router.post('/new-project', projectValidation, processNewProjectForm);
 //Route to show the categories form
-router.get('/assign-categories/:projectId', showAssignCategoriesForm);
+//router.get('/assign-categories/:projectId', showAssignCategoriesForm);
 //Route to process assign categories form
-router.post('/assign-categories/:projectId', processAssignCategoriesForm);
+//router.post('/assign-categories/:projectId', processAssignCategoriesForm);
 //Route to show project info form
-router.get('/edit-project/:projectId', showEditProjectForm);
+//router.get('/edit-project/:projectId', showEditProjectForm);
 //Route to process the project form
-router.post('/edit-project/:projectId', projectValidation, processEditProjectForm);
+//router.post('/edit-project/:projectId', projectValidation, processEditProjectForm);
 
 
 export default router;
