@@ -14,7 +14,7 @@ const getAllCategories = async () => {
     return result.rows;
 }
 
-const getProjectsInCategory = async(categoryId) => {
+const getProjectsInCategory = async (categoryId) => {
     const query = `
         SELECT
             p.project_id,
@@ -43,4 +43,42 @@ const getProjectsInCategory = async(categoryId) => {
     return result.rows;
 }
 
-export { getAllCategories, getProjectsInCategory }
+const assignCategoryToProject = async (projectId, categoryId) => {
+    console.log("CATEGORY ID===", categoryId);
+    const query = `
+        INSERT INTO project_category (
+            project_id,
+            category_id
+        )
+        VALUES (
+            $1,
+            $2
+        );`;
+
+    const queryParams = [projectId, categoryId];
+    await db.query(query, queryParams);
+
+};
+
+const updateCategoryAssignments = async (projectId, categoryIds) => {
+    // REMOVE EXISTING CATEGORY ASSIGNMENTS
+    const deleteQuery = `
+        DELETE FROM project_category
+        WHERE project_id = $1;
+    `;
+
+    await db.query(deleteQuery, [projectId]);
+
+    // ADD NEW CATEGORY ASSIGNMENTS
+    console.log("BEFORE LOOP");
+    for (const categoryId of categoryIds) {
+        console.log("HELLO,HELLO");
+        await assignCategoryToProject(projectId, categoryId);
+    }
+};
+
+export {
+    getAllCategories,
+    getProjectsInCategory,
+    updateCategoryAssignments
+}
