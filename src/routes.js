@@ -62,9 +62,9 @@ router.get('/new-project', showNewProjectForm);
 //Route to process new project form
 router.post('/new-project', projectValidation, processNewProjectForm);
 //Route to show the categories form
-//router.get('/assign-categories/:projectId', showAssignCategoriesForm);
+router.get('/assign-categories/:projectId', showAssignCategoriesForm);
 //Route to process assign categories form
-//router.post('/assign-categories/:projectId', processAssignCategoriesForm);
+router.post('/assign-categories/:projectId', processAssignCategoriesForm);
 //Route to show project info form
 //router.get('/edit-project/:projectId', showEditProjectForm);
 //Route to process the project form
