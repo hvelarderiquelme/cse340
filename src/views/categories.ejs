@@ -4,12 +4,28 @@
     <h1><%= title %></h1>
 
     <section class="categories-grid">
-        <% categories.forEach(category => {%>
-        <article class="category-card">
-            <h2><a href="/category/<%=category.category_id%>"><%= category.name %></a></h2>
-        </article>
-        <% } );%> 
-    </section>
 
+    <% categories.forEach(category => { %>
+
+        <article class="category-card">
+
+            <!-- EDIT LINK -->
+            <a href="/edit-category/<%= category.category_id %>" class="edit-link">Edit</a>
+
+            <!-- CATEGORY NAME -->
+            <h2>
+                <a href="/category/<%= category.category_id %>"><%= category.name %></a>
+            </h2>
+
+        </article>
+
+    <% }) %>
+
+</section>
+
+    <!-- LINK TO ADD NEW CATEGORY -->
+    <p class="add-link">
+        <a href="/new-category">+ Add a New Category</a>
+    </p>
 </main>
 <%- include('partials/footer') %>
