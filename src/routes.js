@@ -54,9 +54,9 @@ router.get('/new-organization', showNewOrganizationForm);
 // Route to handle new organization form submission
 router.post('/new-organization', organizationValidation, processNewOrganizationForm);
 //Route to display the edit-organization page
-//router.get('/edit-organization/:id', showEditOrganizationForm);
+router.get('/edit-organization/:id', showEditOrganizationForm);
 //Route to handle the edit organization for submission
-//router.post('/edit-organization/:id', organizationValidation, processEditOrganizationForm);
+router.post('/edit-organization/:id', organizationValidation, processEditOrganizationForm);
 //Route to display new project form
 //router.get('/new-project', showNewProjectForm);
 //Route to process new project form
