@@ -1,0 +1,52 @@
+<%- include('partials/header') %>
+
+<main class="form-page">
+
+    <section class="form-card">
+
+        <h1><%= title %></h1>
+
+        <form
+            action="/edit-category/<%= category.category_id %>"
+            method="POST"
+        >
+
+            <!-- HIDDEN CATEGORY ID -->
+            <input
+                type="hidden"
+                name="categoryId"
+                value="<%= category.category_id %>"
+            />
+
+            <!-- CATEGORY NAME -->
+            <div class="form-group">
+
+                <label for="name">
+                    Category Name
+                </label>
+
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value="<%= category.name %>"
+                    required
+                />
+
+            </div>
+
+            <!-- SUBMIT BUTTON -->
+            <button
+                type="submit"
+                class="submit-btn"
+            >
+                Update Category
+            </button>
+
+        </form>
+
+    </section>
+
+</main>
+
+<%- include('partials/footer') %>

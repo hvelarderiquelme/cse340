@@ -103,9 +103,62 @@ const createCategory = async (name) => {
     return result.rows[0].category_id;
 };
 
+//shows category to be edited
+const getCategory = async (categoryId) => {
+    const query = `
+                SELECT
+                    category_id,
+                    name
+                FROM
+                    category
+                WHERE
+                    category_id = $1;
+                `;
+    const queryParams = [categoryId];            
+    const result = await db.query(query, queryParams);
+
+    if(result.rows.length === 0){
+        throw new Error("No category found");
+    }
+
+    if (process.env.ENABLE_SQL_LOGGING === 'true') {
+        console.log('Found category name:', result.rows[0].name);
+    }
+
+    return result.rows[0];
+}
+
+//when form is submittes, updates the name in Database
+const updateCategory = async (categoryId, categoryName) => {
+    const query = `
+        UPDATE 
+            category
+        SET
+            name = $2
+        WHERE
+            category_id = $1
+        RETURNING 
+            category_id;`;
+
+    const queryParams = [categoryId, categoryName];
+    const result = await db.query(query, queryParams);
+    
+    if(result.rows.length === 0){
+        throw Error ('Unable to Update category');
+    }
+
+    if (process.env.ENABLE_SQL_LOGGING === 'true') {
+        console.log('Category updated successfully:', result.rows[0].name);
+    }
+
+    return result.rows[0];
+}
+
 export {
     getAllCategories,
     getProjectsInCategory,
     updateCategoryAssignments,
-    createCategory
+    createCategory,
+    getCategory,
+    updateCategory
 }

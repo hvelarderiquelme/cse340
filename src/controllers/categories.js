@@ -4,7 +4,9 @@ import {
     createCategory,
     getAllCategories,
     getProjectsInCategory,
-    updateCategoryAssignments
+    updateCategoryAssignments,
+    getCategory,
+    updateCategory
 } from "../models/categories.js";
 
 const categoryValidation = [
@@ -94,10 +96,41 @@ const processNewCategoryForm = async(req,res) => {
     }
 
     const categoryName = req.body.name;
-    const categoryId = await createCategory(categoryName);
+    await createCategory(categoryName);
     req.flash('success', 'Category Created Successfully');
     res.redirect(`/categories`);
 }
+
+//Shows the category name in the form, ready to be updated
+const showEditCategoryForm = async(req,res) => {
+    const categoryId = req.params.categoryId;
+    const title = 'Update Category';
+    const category = await getCategory(categoryId);
+
+    res.render('edit-category', {title, category});
+}
+
+//Sends new info to updateCategory to be upated
+const processEditCategoryForm = async(req,res) => {
+    const categoryId = req.body.categoryId;
+    const name = req.body.name
+
+    // Check for validation errors
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        // Loop through validation errors and flash them
+        errors.array().forEach((error) => {
+            req.flash('error', error.msg);
+        });
+
+        // Redirect back to the new project form
+        return res.redirect(`/edit-category/${categoryId}`);
+    }
+    await updateCategory(categoryId, name);
+    req.flash('success', 'Category updated successfully');
+    res.redirect('/categories');
+}
+
 
 export {
     categoriesPage,
@@ -107,5 +140,7 @@ export {
     updateCategoryAssignments,
     showNewCategoryForm, 
     processNewCategoryForm,
-    categoryValidation
+    categoryValidation,
+    showEditCategoryForm,
+    processEditCategoryForm
 };
