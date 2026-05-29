@@ -58,9 +58,9 @@ router.get('/edit-organization/:id', showEditOrganizationForm);
 //Route to handle the edit organization for submission
 router.post('/edit-organization/:id', organizationValidation, processEditOrganizationForm);
 //Route to display new project form
-//router.get('/new-project', showNewProjectForm);
+router.get('/new-project', showNewProjectForm);
 //Route to process new project form
-//router.post('/new-project', projectValidation, processNewProjectForm);
+router.post('/new-project', projectValidation, processNewProjectForm);
 //Route to show the categories form
 //router.get('/assign-categories/:projectId', showAssignCategoriesForm);
 //Route to process assign categories form
