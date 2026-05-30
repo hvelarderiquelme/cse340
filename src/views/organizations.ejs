@@ -7,6 +7,10 @@
         Here are a few of our partner organizations:
     </p>
 
+    <p class="page-action">
+        <a href="/new-organization">Add a new organization</a>
+    </p>
+
     <ul class="organization-grid">
         <% organizations.forEach(organization => { %>
             <li class="organization-card">
@@ -17,7 +21,7 @@
             </li>    
         <% }); %>
     </ul>       
-    <p><a href="/new-organization">Add a new organization</a></p>
+    
 
 </main>
 <%- include('partials/footer') %>

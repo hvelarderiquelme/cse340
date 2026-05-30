@@ -1,9 +1,11 @@
 <%-include('partials/header')%>
-    <main>
+    <main class="form-page">
+
+        <section class="form-card">
         <h1>
             <%= title %>
         </h1>
-
+         
         <form action="/new-project" method="POST">
             <div class="form-group">
                 <label for="title">Project Title</label>
@@ -27,7 +29,7 @@
 
             <div class="form-group">
                 <label for="organizationId">Organization</label>
-                <select id="organization" name="organizationId" required>
+                <select id="organizationId" name="organizationId" required>
                     <option value="">Select an organization</option>
                     <% organizations.forEach(organization=> { %>
                         <option value="<%= organization.organization_id %>">
@@ -37,8 +39,9 @@
                 </select>
             </div>
 
-            <button type="submit">Create Project</button>
+            <button type="submit" class="submit-btn">Create Project</button>
 
         </form>
+        </section>
     </main>
     <%-include('partials/footer')%>

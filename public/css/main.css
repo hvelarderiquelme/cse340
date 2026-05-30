@@ -16,6 +16,7 @@
     /* TEXT */
     --text: #2B2D42;
     --light-text: #6C757D;
+    --text-on-button: #ffffff;
 
     /* EFFECTS */
     --shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
@@ -117,6 +118,18 @@ main p {
     margin: 0 auto 2rem auto;
 }
 
+main a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s ease;
+}
+
+main a:hover {
+    color: var(--secondary);
+    text-decoration: underline;
+}
+
 /* =========================
    LOGO
 ========================= */
@@ -192,8 +205,190 @@ main p {
 }
 
 /* =========================
-   PROJECTS PAGE
+   PAGE ACTION LINK (CTA)
 ========================= */
+
+.page-action {
+    margin: 1.5rem auto 2rem;
+    text-align: center;
+}
+
+.page-action a {
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+
+    padding: 0.6rem 1.2rem;
+
+    background: var(--secondary);
+    color: var(--text-on-button);
+
+    border-radius: 999px;
+
+    font-weight: 700;
+    text-decoration: none;
+
+    transition: all 0.25s ease;
+
+    box-shadow: var(--shadow);
+}
+
+.page-action a:hover {
+    background: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: var(--hover-shadow);
+    color: var(--text-on-button);
+    text-decoration: none;
+}
+
+.page-action a:active {
+    transform: scale(0.97);
+}
+
+/* =========================
+   FORM PAGE LAYOUT
+========================= */
+
+.form-page {
+    width: 90%;
+    max-width: 900px;
+    margin: 3rem auto;
+
+    display: flex;
+    justify-content: center;
+}
+
+/* CARD */
+.form-card {
+    width: 100%;
+    background: var(--card-bg);
+    padding: 3rem;
+
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+
+    text-align: left;
+}
+
+/* TITLE */
+.form-card h1 {
+    text-align: center;
+    color: var(--primary);
+    margin-bottom: 2rem;
+}
+
+/* FORM GROUP */
+.form-group {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+/* LABEL */
+.form-group label {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--text);
+}
+
+/* INPUTS */
+.form-group input,
+.form-group textarea,
+.form-group select {
+    padding: 0.75rem 1rem;
+
+    border-radius: 10px;
+    border: 1px solid var(--border);
+
+    font-size: 1rem;
+    font-family: inherit;
+
+    outline: none;
+    transition: 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: var(--secondary);
+    box-shadow: 0 0 0 3px rgba(42, 157, 143, 0.15);
+}
+
+/* TEXTAREA */
+.form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* SUBMIT BUTTON */
+.submit-btn {
+    width: 100%;
+    padding: 0.9rem 1.2rem;
+
+    background: var(--secondary);
+    color: var(--text-on-button);
+
+    border: none;
+    border-radius: 12px;
+
+    font-size: 1rem;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.25s ease;
+}
+
+.submit-btn:hover {
+    background: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: var(--hover-shadow);
+}
+
+.submit-btn:active {
+    transform: scale(0.98);
+}
+
+
+/* =========================
+   PROJECT ACTION BUTTONS
+========================= */
+
+.project-actions {
+    width: 100%;
+    margin-top: 2rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* PRIMARY BUTTON */
+.btn-primary {
+    display: inline-block;
+
+    padding: 0.7rem 1.2rem;
+
+    background: var(--secondary);
+    color: var(--text-on-button) !important;
+
+    border-radius: 12px;
+    text-decoration: none;
+
+    font-weight: 700;
+
+    transition: 0.25s ease;
+}
+
+.btn-primary:hover {
+    background: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: var(--hover-shadow);
+    text-decoration: none !important;
+}
 
 .projects-page {
     width: 90%;
@@ -250,12 +445,11 @@ main p {
 .project-details-page {
     width: 90%;
     max-width: 1000px;
-    min-height: 60vh;
 
     margin: 4rem auto;
 
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
 }
 
@@ -299,6 +493,78 @@ main p {
 .project-details-card a:hover {
     color: var(--secondary);
     text-decoration: underline;
+}
+
+/* =========================
+   CATEGORY CHECKBOXES
+========================= */
+
+.categories-checkboxes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+
+    margin: 2rem 0;
+}
+
+/* CATEGORY OPTION CARD */
+
+.category-option {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+
+    padding: 1rem;
+
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+}
+
+/* HOVER EFFECT */
+
+.category-option:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--hover-shadow);
+}
+
+/* CHECKBOX */
+
+.category-option input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+
+    accent-color: var(--secondary);
+
+    cursor: pointer;
+}
+
+/* CATEGORY NAME */
+
+.category-option span {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
+}
+
+/* SELECTED STATE */
+
+.category-option:has(input:checked) {
+    background: rgba(42, 157, 143, 0.12);
+    border-color: var(--secondary);
+}
+
+/* FOCUS ACCESSIBILITY */
+
+.category-option:has(input:focus) {
+    outline: 2px solid var(--secondary);
+    outline-offset: 2px;
 }
 
 /* =========================
@@ -371,6 +637,7 @@ a.tag:focus {
 
 /* CARD */
 .category-card {
+    position: relative;
     background: var(--card-bg);
     padding: 2rem;
     border-radius: 18px;
@@ -388,7 +655,7 @@ a.tag:focus {
 }
 
 /* LINK INSIDE CARD */
-.category-card a {
+.category-card h2 a {
     text-decoration: none;
     color: var(--primary);
     font-size: 1.4rem;
@@ -397,9 +664,15 @@ a.tag:focus {
     transition: 0.25s ease;
 }
 
+.category-card h2 a:hover {
+    color: var(--secondary);
+}
+
 /* HOVER EFFECT */
 .category-card a:hover {
     color: var(--secondary);
+    text-decoration: none;
+    color: var(--text-on-button);
     transform: scale(1.05);
 }
 
@@ -448,6 +721,43 @@ a.tag:focus {
 /* LINK HOVER */
 .category-projects a:hover {
     color: var(--secondary);
+}
+
+.page-description {
+    text-align: center;
+    color: #666;
+    margin-bottom: 1.5rem;
+}
+
+/* SMALL CORNER EDIT LINK */
+
+.edit-link {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+
+    padding: 0.35rem 0.75rem;
+
+    font-size: 0.8rem;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    color: var(--primary);
+
+    background: rgba(30, 58, 95, 0.08);
+    border: 1px solid rgba(30, 58, 95, 0.15);
+
+    border-radius: 999px;
+
+    transition: all 0.25s ease;
+}
+
+.edit-link:hover {
+    background: var(--primary);
+    color: white;
+
+    transform: translateY(-1px);
 }
 
 /* =========================
@@ -640,7 +950,7 @@ footer {
     }
 }
 
-/* Flash message styles */
+Flash message styles
 .alert {
     padding: 15px;
     margin-bottom: 20px;
