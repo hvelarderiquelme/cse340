@@ -1,0 +1,55 @@
+<%- include ('partials/header') %>
+<main>
+    
+    <section class="form-card">
+    <h1><%= title %></h1>
+
+    <!-- Form explicitly targets your POST controller action -->
+    <form action="/register" method="POST">
+        
+        <!-- Name Input Field -->
+        <div class="form-group">
+            <label for="name">Full Name</label>
+            <input 
+                type="text" 
+                id="name" 
+                name="name" 
+                placeholder="Enter your full name" 
+                required
+            >
+        </div>
+
+        <!-- Email Input Field with Format Validation -->
+        <div class="form-group">
+            <label for="email">Email Address</label>
+            <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                placeholder="name@example.com" 
+                required
+            >
+        </div>
+
+        <!-- Password Input Field -->
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input 
+                type="password" 
+                id="password" 
+                name="password" 
+                placeholder="Create a strong password" 
+                minlength="8"
+                required
+            >
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="submit-btn">Create Account</button>
+        
+    </form>
+    </section>
+</main>
+
+<%- include ('partials/footer') %>
+
