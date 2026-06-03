@@ -43,7 +43,9 @@ import {
   userValidation,
   showLoginForm,
   processLoginForm,
-  processLogout
+  processLogout,
+  requiredLogin,
+  showDashboard
 } from './controllers/users.js';
 
 const router = express.Router();
@@ -101,5 +103,7 @@ router.get('/login',showLoginForm);
 router.post('/login', processLoginForm);
 //router for logout
 router.get('/logout', processLogout);
+/************middleware route for required login*******/
+router.get('/dashboard', requiredLogin, showDashboard);
 
 export default router;

@@ -58,7 +58,7 @@ const processUserRegistrationForm = async(req,res) => {
 };
 
 const showLoginForm = async(req,res) => {
-    const title = 'Please login.'
+    const title = 'Login.'
 
     res.render('login', {title});
 };
@@ -74,7 +74,7 @@ const processLoginForm = async(req,res) => {
             if (res.locals.NODE_ENV === 'development') {
                 console.log("User logged in:", req.session.user);
             }
-            res.redirect('/');
+            res.redirect('/dashboard');
         }else{
             req.flash('error', 'Login failed');
             res.redirect('/login');
@@ -94,11 +94,27 @@ const processLogout = async(req,res) => {
     res.redirect('/login');
 };
 
+const requiredLogin = async(req, res, next) => {
+    if(!req.session || !req.session.user) {
+        req.flash('error', 'It is required that you login to access this page.');
+        return res.redirect('/login');
+    }else{
+        next();
+    }
+};
+
+const showDashboard = async(req,res) => {
+    const user = req.session.user;
+    res.render('dashboard', {title: 'Dashboard', name: user.name, email: user.email});
+};
+
 export { 
     showUserRegistrationForm,
     processUserRegistrationForm,
     userValidation,
     showLoginForm,
     processLoginForm,
-    processLogout
+    processLogout,
+    requiredLogin,
+    showDashboard
 };
