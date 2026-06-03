@@ -1,4 +1,5 @@
 import db from './db.js'
+import bcrypt from 'bcrypt';
 
 const createNewUser = async(name, email, password_hash) => {
     const role_name = 'user';
@@ -21,4 +22,44 @@ const createNewUser = async(name, email, password_hash) => {
     return result.rows[0].user_id;
 }
 
-export{ createNewUser }
+const findUserByEmail = async (email) => {
+    const query = `
+        SELECT user_id, name, email, password_hash, role_id 
+        FROM users 
+        WHERE email = $1
+    `;
+    const queryParams = [email];
+    
+    const result = await db.query(query, queryParams);
+
+    if (result.rows.length === 0) {
+        return null; // User not found
+    }
+    
+    return result.rows[0];
+};
+
+const verifyPassword = async (password, password_hash) => {
+    return bcrypt.compare(password, password_hash);
+};
+
+const authenticateUser = async(email, password) => {
+    const user = await findUserByEmail(email);
+
+    if(!user){
+        return null;
+    }
+
+    const isPasswordCorrect = await verifyPassword(password, user.password_hash);
+    if (isPasswordCorrect) {
+        delete user.password_hash;//cleanly deletes the property from the object
+        return user;
+    }
+
+    return null;
+};
+
+export{ 
+    createNewUser,
+    authenticateUser
+ }

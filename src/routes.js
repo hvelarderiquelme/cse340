@@ -40,7 +40,10 @@ import {
 import {
   showUserRegistrationForm,
   processUserRegistrationForm,
-  userValidation
+  userValidation,
+  showLoginForm,
+  processLoginForm,
+  processLogout
 } from './controllers/users.js';
 
 const router = express.Router();
@@ -89,7 +92,14 @@ router.get('/edit-category/:categoryId', showEditCategoryForm);
 router.post('/edit-category/:categoryId', categoryValidation, processEditCategoryForm);
 //Route to show registration form
 router.get('/register', showUserRegistrationForm);
-//Route to process the user registrstion form
+//Route to process the user registration form
 router.post('/register', userValidation, processUserRegistrationForm);
+/***************login routes*****************/
+//router for showLoginForm
+router.get('/login',showLoginForm);
+//router for processLoginForm
+router.post('/login', processLoginForm);
+//router for logout
+router.get('/logout', processLogout);
 
 export default router;

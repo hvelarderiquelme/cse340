@@ -1,6 +1,9 @@
-import bcrypt from 'bcrypt';
 import { body, validationResult } from 'express-validator';
-import { createNewUser } from '../models/users.js'
+import bcrypt from 'bcrypt';
+import { 
+    createNewUser,
+    authenticateUser
+ } from '../models/users.js'
 
 // Define validation and sanitization rules for organization form
 // Define validation rules for organization form
@@ -54,9 +57,48 @@ const processUserRegistrationForm = async(req,res) => {
     }
 };
 
+const showLoginForm = async(req,res) => {
+    const title = 'Please login.'
+
+    res.render('login', {title});
+};
+
+const processLoginForm = async(req,res) => {
+    const {email, password} = req.body;
+    
+    try{
+        const user = await authenticateUser(email,password);
+        if(user){//store info in session
+            req.session.user = user;
+            req.flash('success', "Login sucessfull");
+            if (res.locals.NODE_ENV === 'development') {
+                console.log("User logged in:", req.session.user);
+            }
+            res.redirect('/');
+        }else{
+            req.flash('error', 'Login failed');
+            res.redirect('/login');
+        }
+    }catch (error){
+        console.log("Error during login: ", error);
+        req.flash('error')
+    }   
+};
+
+const processLogout = async(req,res) => {
+    if(req.session.user){
+        delete req.session.user;
+    }
+    
+    req.flash('success', 'You have logged out successfully.');
+    res.redirect('/login');
+};
+
 export { 
     showUserRegistrationForm,
     processUserRegistrationForm,
-    userValidation
-
+    userValidation,
+    showLoginForm,
+    processLoginForm,
+    processLogout
 };
