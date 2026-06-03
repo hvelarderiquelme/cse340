@@ -5,15 +5,17 @@
 
         <h1><%= projectDetails.title %></h1>
         <section>
-            <div class="project-actions">
-                <a href="/assign-categories/<%=projectDetails.project_id%>" class="btn-primary">
-                    Edit Categories
-                </a>
-            
-                <a href="/edit-project/<%=projectDetails.project_id%>" class="btn-primary">
-                    Update Project
-                </a>
-            </div>
+            <% if (user && user.role_name === 'admin') {%>
+                <div class="project-actions">
+                    <a href="/assign-categories/<%=projectDetails.project_id%>" class="btn-primary">
+                        Edit Categories
+                    </a>
+                
+                    <a href="/edit-project/<%=projectDetails.project_id%>" class="btn-primary">
+                        Update Project
+                    </a>
+                </div>
+            <%}%>    
         </section>   
 
         <p>

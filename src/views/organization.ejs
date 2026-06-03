@@ -6,9 +6,11 @@
              alt="<%= organizationDetails.name %> logo">
         <p><%= organizationDetails.description %></p>
         
-        <p class="page-action">
-            <a href="/edit-organization/<%=organizationDetails.organization_id%>">Edit Organization</a>
-        </p>   
+        <% if (user && user.role_name === 'admin') {%>
+            <p class="page-action">
+                <a href="/edit-organization/<%=organizationDetails.organization_id%>">Edit Organization</a>
+            </p>   
+        <%}%>
         
         <h3>Service Projects</h3>
         <ul>
