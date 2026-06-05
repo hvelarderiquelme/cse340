@@ -981,3 +981,78 @@ Flash message styles
     background-color: #d1ecf1;
     border-color: #bee5eb;
 }
+
+/* =========================
+   USERS PAGE
+========================= */
+
+.users-page {
+    width: 90%;
+    max-width: 1000px;
+    margin: 3rem auto;
+}
+
+.users-page h1 {
+    text-align: center;
+    color: var(--primary);
+    margin-bottom: 2rem;
+}
+
+/* =========================
+   USERS TABLE
+========================= */
+
+.users-table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    background: var(--card-bg);
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    box-shadow: var(--shadow);
+}
+
+/* TABLE HEADER */
+
+.users-table thead {
+    background: var(--primary);
+}
+
+.users-table th {
+    color: white;
+    padding: 1rem;
+    text-align: left;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+/* TABLE BODY */
+
+.users-table td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    text-align: left;
+}
+
+/* ALTERNATING ROWS */
+
+.users-table tbody tr:nth-child(even) {
+    background: rgba(30, 58, 95, 0.03);
+}
+
+/* HOVER EFFECT */
+
+.users-table tbody tr:hover {
+    background: rgba(42, 157, 143, 0.08);
+}
+
+/* LAST ROW */
+
+.users-table tbody tr:last-child td {
+    border-bottom: none;
+}

@@ -46,7 +46,8 @@ import {
   processLogout,
   requiredLogin,
   showDashboard,
-  requireRole
+  requireRole,
+  showUsersList
 } from './controllers/users.js';
 
 const router = express.Router();
@@ -106,5 +107,7 @@ router.post('/login', processLoginForm);
 router.get('/logout', processLogout);
 /************middleware route for required login*******/
 router.get('/dashboard', requiredLogin, showDashboard);
+//Route fpr users-list page
+router.get('/users-list', requireRole('admin'), showUsersList);
 
 export default router;

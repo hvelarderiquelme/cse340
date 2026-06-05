@@ -2,7 +2,8 @@ import { body, validationResult } from 'express-validator';
 import bcrypt from 'bcrypt';
 import { 
     createNewUser,
-    authenticateUser
+    authenticateUser,
+    getUsersList
  } from '../models/users.js'
 
 // Define validation and sanitization rules for organization form
@@ -126,12 +127,18 @@ const requireRole = (role) => {
         // Check if user's role matches the required role
         if (req.session.user.role_name !== role) {
             req.flash('error', 'You do not have permission to access this page.');
-            return res.redirect('/');
+            return res.redirect('/dashboard');
         }
 
         // User has required role, continue
         next();
     };
+};
+
+const showUsersList = async(req,res) => {
+    const title = 'Users List';
+    const usersList = await getUsersList();
+    res.render('users-list', {title, usersList});
 };
 
 export { 
@@ -143,5 +150,6 @@ export {
     processLogout,
     requiredLogin,
     showDashboard,
-    requireRole
+    requireRole,
+    showUsersList
 };

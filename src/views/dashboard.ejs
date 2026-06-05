@@ -1,8 +1,11 @@
 <%-include ('partials/header')%>
 <main>
     <h1><%=title%></h1>
-    <h2>Dashboard</h2>
-    <p>Username: <%=email%></p>
-    <!-- <p>User: <pre><%= JSON.stringify(user, null, 2) %></pre></p> -->
+    <strong>Username: <%=email%></strong>
+    <% if (user && user.role_name === 'admin') {%>
+        <p class="page-action">
+            <a href="users-list">See list of registered users</a>
+        </p>
+    <%}%>    
 </main>
 <%-include ('partials/footer')%>
