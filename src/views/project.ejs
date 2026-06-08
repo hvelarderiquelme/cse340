@@ -44,7 +44,32 @@
                 <a href="/category/<%=category.category_id%>" class="tag"><%=category.category_name%></a>
             <%});%>
         </div>
-                
+
+        <% if (user && user.role_name === 'user') {%>
+            <% if (!isVolunteer) {%>
+
+                <form action="/volunteer/<%= projectDetails.project_id %>" method="POST">
+                    <button type="submit" class="submit-btn">
+                        Volunteer for this Project
+                    </button>
+                </form>
+
+            <% } %>
+
+            <% if(isVolunteer) {%>
+                <p class="volunteer-status">
+                    You are volunteering for this project
+                </p>
+
+                <form action="/no-volunteer/<%= projectDetails.project_id %>" method="POST">
+                    <input type="hidden" name="redirectTo" value="/project/<%= projectDetails.project_id %>">
+                    <button type="submit" class="submit-btn">
+                        Stop Volunteering
+                    </button>
+                </form>
+
+            <% } %>
+        <% } %>        
     </section>
     
 </main>

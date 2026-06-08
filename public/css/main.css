@@ -221,7 +221,7 @@ main a:hover {
     padding: 0.6rem 1.2rem;
 
     background: var(--secondary);
-    color: var(--text-on-button);
+    color: var(--text-on-button) !important;
 
     border-radius: 999px;
 
@@ -296,15 +296,18 @@ main a:hover {
 .form-group textarea,
 .form-group select {
     padding: 0.75rem 1rem;
-
     border-radius: 10px;
     border: 1px solid var(--border);
-
     font-size: 1rem;
     font-family: inherit;
-
     outline: none;
     transition: 0.2s ease;
+}
+
+.form-group input[type="date"],
+.form-group select {
+    width: fit-content;
+    min-width: 200px;
 }
 
 .form-group input:focus,
@@ -322,20 +325,16 @@ main a:hover {
 
 /* SUBMIT BUTTON */
 .submit-btn {
-    width: 100%;
+    width: fit-content;
+    margin: 1.5rem auto;
     padding: 0.9rem 1.2rem;
-
     background: var(--secondary);
     color: var(--text-on-button);
-
     border: none;
     border-radius: 12px;
-
     font-size: 1rem;
     font-weight: 700;
-
     cursor: pointer;
-
     transition: 0.25s ease;
 }
 
@@ -568,10 +567,11 @@ main a:hover {
 }
 
 /* =========================
-   CATEGORY TAGS
+       CATEGORY TAGS
 ========================= */
 
 .category-tags {
+    justify-content: flex-start;
     margin-top: 1rem;
     display: flex;
     flex-wrap: wrap;
@@ -581,19 +581,14 @@ main a:hover {
 a.tag {
     display: inline-flex;
     align-items: center;
-
     padding: 0.45rem 0.9rem;
     border-radius: 999px;
-
     background: rgba(42, 157, 143, 0.12);
     color: var(--secondary);
     border: 1px solid rgba(42, 157, 143, 0.25);
-
     font-size: 0.85rem;
     font-weight: 600;
-
     text-decoration: none;
-
     transition: all 0.25s ease;
 }
 
@@ -760,6 +755,277 @@ a.tag:focus {
     transform: translateY(-1px);
 }
 
+Flash message styles
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.alert.success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+.alert.error {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+.alert.warning {
+    color: #856404;
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+}
+
+.alert.info {
+    color: #0c5460;
+    background-color: #d1ecf1;
+    border-color: #bee5eb;
+}
+
+/* =========================
+   USERS PAGE
+========================= */
+
+.users-page {
+    width: 90%;
+    max-width: 1000px;
+    margin: 3rem auto;
+}
+
+.users-page h1 {
+    text-align: center;
+    color: var(--primary);
+    margin-bottom: 2rem;
+}
+
+/* =========================
+   USERS TABLE
+========================= */
+
+.users-table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    background: var(--card-bg);
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    box-shadow: var(--shadow);
+}
+
+/* TABLE HEADER */
+
+.users-table thead {
+    background: var(--primary);
+}
+
+.users-table th {
+    color: white;
+    padding: 1rem;
+    text-align: left;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+/* TABLE BODY */
+
+.users-table td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    text-align: left;
+}
+
+/* ALTERNATING ROWS */
+
+.users-table tbody tr:nth-child(even) {
+    background: rgba(30, 58, 95, 0.03);
+}
+
+/* HOVER EFFECT */
+
+.users-table tbody tr:hover {
+    background: rgba(42, 157, 143, 0.08);
+}
+
+/* LAST ROW */
+
+.users-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* =========================
+   VOLUNTEER PROJECTS TABLE
+========================= */
+
+.volunteer-table {
+    width: 100%;
+    margin-top: 2rem;
+    border-collapse: collapse;
+    background: var(--card-bg);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.volunteer-table thead {
+    background: var(--primary);
+}
+
+.volunteer-table th {
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    font-weight: 700;
+}
+
+.volunteer-table td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+}
+
+.volunteer-table tbody tr:hover {
+    background: rgba(42, 157, 143, 0.08);
+}
+
+.volunteer-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.volunteer-table a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.volunteer-table a:hover {
+    color: var(--secondary);
+}
+
+/* REMOVE BUTTON */
+
+.remove-btn {
+    padding: 0.45rem 0.9rem;
+    border: none;
+    border-radius: 999px;
+    background: #dc3545;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.remove-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.remove-btn:active {
+    transform: scale(0.97);
+}
+
+.volunteer-status {
+    display: flex;
+    align-items: center;
+    width:fit-content;
+    margin: 2rem 0 0 0 !important;
+    padding: 0.45rem 0.9rem;
+    border-radius: 999px;
+    background: rgba(42, 157, 143, 0.12);
+    color: var(--secondary) !important;
+    border: 1px solid rgba(42, 157, 143, 0.25);
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: all 0.25s ease;
+}
+
+.volunteer-status::before {
+    content: "✓";
+    font-size: 1.2rem;
+}
+
+/*Login form*/
+/* Login page container */
+.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+}
+
+/* Login card */
+.login-card {
+    width: 100%;
+    max-width: 400px;
+
+    background: var(--card-bg);
+    padding: 2.5rem;
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+
+    text-align: center;
+}
+
+/* Heading */
+.login-card h1 {
+    margin-bottom: 2rem;
+}
+
+/* Form layout */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+/* Labels */
+.login-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+
+    text-align: left;
+    font-weight: 600;
+}
+
+/* Inputs */
+.login-form input {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 0.75rem 1rem;
+
+    border: 1px solid var(--border);
+    border-radius: 10px;
+
+    font-size: 1rem;
+    font-family: inherit;
+
+    transition: 0.2s ease;
+}
+
+/* Focus state */
+.login-form input:focus {
+    outline: none;
+    border-color: var(--secondary);
+    box-shadow: 0 0 0 3px rgba(42, 157, 143, 0.15);
+}
+
+/* Submit button */
+.login-form button {
+    margin-top: 0.5rem;
+    width: fit-content;
+}
+
+
 /* =========================
    FOOTER
 ========================= */
@@ -921,18 +1187,6 @@ footer {
         min-width: auto;
     }
 
-    /* =========================
-       CATEGORY TAGS
-    ========================= */
-
-    .category-tags {
-        justify-content: flex-start;
-    }
-
-    a.tag {
-        font-size: 0.8rem;
-        padding: 0.45rem 0.8rem;
-    }
 
     /* =========================
        IMAGES
@@ -950,109 +1204,3 @@ footer {
     }
 }
 
-Flash message styles
-.alert {
-    padding: 15px;
-    margin-bottom: 20px;
-    border: 1px solid transparent;
-    border-radius: 4px;
-}
-
-.alert.success {
-    color: #155724;
-    background-color: #d4edda;
-    border-color: #c3e6cb;
-}
-
-.alert.error {
-    color: #721c24;
-    background-color: #f8d7da;
-    border-color: #f5c6cb;
-}
-
-.alert.warning {
-    color: #856404;
-    background-color: #fff3cd;
-    border-color: #ffeeba;
-}
-
-.alert.info {
-    color: #0c5460;
-    background-color: #d1ecf1;
-    border-color: #bee5eb;
-}
-
-/* =========================
-   USERS PAGE
-========================= */
-
-.users-page {
-    width: 90%;
-    max-width: 1000px;
-    margin: 3rem auto;
-}
-
-.users-page h1 {
-    text-align: center;
-    color: var(--primary);
-    margin-bottom: 2rem;
-}
-
-/* =========================
-   USERS TABLE
-========================= */
-
-.users-table {
-    width: 100%;
-
-    border-collapse: collapse;
-
-    background: var(--card-bg);
-
-    border-radius: 18px;
-
-    overflow: hidden;
-
-    box-shadow: var(--shadow);
-}
-
-/* TABLE HEADER */
-
-.users-table thead {
-    background: var(--primary);
-}
-
-.users-table th {
-    color: white;
-    padding: 1rem;
-    text-align: left;
-    font-size: 1rem;
-    font-weight: 700;
-}
-
-/* TABLE BODY */
-
-.users-table td {
-    padding: 1rem;
-    border-bottom: 1px solid var(--border);
-    color: var(--text);
-    text-align: left;
-}
-
-/* ALTERNATING ROWS */
-
-.users-table tbody tr:nth-child(even) {
-    background: rgba(30, 58, 95, 0.03);
-}
-
-/* HOVER EFFECT */
-
-.users-table tbody tr:hover {
-    background: rgba(42, 157, 143, 0.08);
-}
-
-/* LAST ROW */
-
-.users-table tbody tr:last-child td {
-    border-bottom: none;
-}

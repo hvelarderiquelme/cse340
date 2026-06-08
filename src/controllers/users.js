@@ -3,7 +3,8 @@ import bcrypt from 'bcrypt';
 import { 
     createNewUser,
     authenticateUser,
-    getUsersList
+    getUsersList,
+    getVolunteerProjects
  } from '../models/users.js'
 
 // Define validation and sanitization rules for organization form
@@ -106,7 +107,9 @@ const requiredLogin = async(req, res, next) => {
 
 const showDashboard = async(req,res) => {
     const user = req.session.user;
-    res.render('dashboard', {title: 'Dashboard', email: user.email});
+    const volunteerProjects = await getVolunteerProjects(req.session.user.user_id);
+
+    res.render('dashboard', {title: 'Dashboard', email: user.email, user, volunteerProjects});
 };
 
 /**

@@ -1,11 +1,75 @@
 <%-include ('partials/header')%>
 <main>
     <h1><%=title%></h1>
-    <strong>Username: <%=email%></strong>
+    <h2>Username: <%=email%></h2>
+    
     <% if (user && user.role_name === 'admin') {%>
         <p class="page-action">
             <a href="users-list">See list of registered users</a>
         </p>
-    <%}%>    
+    <%}%>
+    
+    <% if (user && user.role_name === 'user') {%>
+        <h3>My Volunteer Projects</h3>
+
+        <% if (!volunteerProjects || volunteerProjects.length === 0) { %>
+
+            <p>You are currently not volunteering for any projects.</p>
+
+        <% } else { %>
+
+            <table class="volunteer-table">
+
+                <thead>
+                    <tr>
+                        <th>Project</th>
+                        <th>Date</th>
+                        <th>Location</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <% volunteerProjects.forEach(project => { %>
+
+                        <tr>
+
+                            <td>
+                                <a href="/project/<%= project.project_id %>">
+                                    <%= project.title %>
+                                </a>
+                            </td>
+
+                            <td>
+                                <%= new Date(project.date).toDateString() %>
+                            </td>
+
+                            <td>
+                                <%= project.location %>
+                            </td>
+
+                            <td>
+
+                                <form action="/no-volunteer/<%= project.project_id %>" method="POST">
+                                    <input type="hidden" name="redirectTo" value="/dashboard">
+                                    <button type="submit" class="remove-btn">
+                                        Remove
+                                    </button>
+                                </form>
+
+                            </td>
+
+                        </tr>
+
+                    <% }) %>
+
+                </tbody>
+
+            </table>
+
+            <% } %>
+        
+    <% }%>  
 </main>
 <%-include ('partials/footer')%>

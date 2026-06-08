@@ -9,6 +9,8 @@ import {
 } from "../models/projects.js";
 import { getAllOrganizations } from "../models/organizations.js";
 
+import { isUserVolunteer } from '../models/volunteers.js';
+
 //validation rules
 const projectValidation = [
     // TITLE
@@ -80,8 +82,13 @@ const showProjectDetailsPage = async (req, res) => {
     const projectDetails = await getProjectDetails(projectId);
     const projectCategories = await getProjectCategories(projectId);
     const title = "Project Details";
+    let isVolunteer = false;
 
-    res.render('project', { title, projectDetails, projectCategories });
+    if(req.session.user && req.session.user.role_name === 'user') {
+        isVolunteer = await isUserVolunteer(req.session.user.user_id, projectId);
+    }
+
+    res.render('project', { title, projectDetails, projectCategories, isVolunteer });
 }
 
 const showNewProjectForm = async (req, res) => {

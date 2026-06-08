@@ -73,8 +73,28 @@ const getUsersList = async () => {
     return result.rows;
 };
 
+const getVolunteerProjects = async (user_id) => {
+    const query = `
+            SELECT
+                p.project_id,
+                p.title,
+                p.description,
+                p.date,
+                p.location
+            FROM volunteer v
+            JOIN project p
+            ON v.project_id = p.project_id
+            WHERE v.user_id = $1
+            ORDER BY p.date;`;
+    const queryParams = [user_id];
+    const result = await db.query(query, queryParams);
+    
+    return result.rows;
+}
+
 export{ 
     createNewUser,
     authenticateUser,
-    getUsersList
+    getUsersList,
+    getVolunteerProjects
  }

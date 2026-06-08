@@ -50,6 +50,11 @@ import {
   showUsersList
 } from './controllers/users.js';
 
+import {
+  newVolunteer,
+  removeVolunteer
+} from './controllers/volunteers.js';
+
 const router = express.Router();
 
 /**
@@ -109,5 +114,9 @@ router.get('/logout', processLogout);
 router.get('/dashboard', requiredLogin, showDashboard);
 //Route fpr users-list page
 router.get('/users-list', requireRole('admin'), showUsersList);
+//Route to add volunteer to project
+router.post('/volunteer/:projectId', requiredLogin, newVolunteer);
+//Route to stop volunteering
+router.post('/no-volunteer/:projectId', requiredLogin, removeVolunteer);
 
 export default router;
