@@ -9,6 +9,7 @@
             <th>Name</th>
             <th>Username</th>
             <th>User Role</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -17,10 +18,19 @@
                 <td><%= user.name %></td>
                 <td><%= user.email %></td>
                 <td><%= user.role_name %></td>
+                <td>
+                    <a href="/user-volunteer-projects/<%= user.user_id %>">
+                        View Projects
+                    </a>
+                </td>
             </tr>
         <% }) %>
     </tbody>
 </table>
-
+<% if (user && user.role_name === 'admin') {%>
+        <p class="page-action">
+            <a href="/dashboard">Return to Dashboard</a>
+        </p>
+<%}%>
 </main>
 <%- include ('partials/footer')%>

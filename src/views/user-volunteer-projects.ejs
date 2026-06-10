@@ -1,0 +1,51 @@
+<%-include ('partials/header')%>
+<main>
+    <h2><%=title%></h2>
+    <table class="volunteer-table">
+
+        <thead>
+            <tr>
+                <th>Project</th>
+                <th>Date</th>
+                <th>Location</th>
+                <!-- <th>Action</th> -->
+            </tr>
+        </thead>
+            <tbody>
+                <% volunteerProjects.forEach(project => { %>
+                
+                <tr>                     
+                    <td>
+                        <a href="/project/<%= project.project_id %>">
+                            <%= project.title %>
+                        </a>
+                    </td>
+                    <td>
+                        <%= new Date(project.date).toDateString() %>
+                    </td>
+                    <td>
+                        <%= project.location %>
+                    </td>
+                    <!-- <td>
+                        <form action="/remove-volunteer-by-admin/<%= project.project_id %>" method="POST">
+                            <input type="hidden" name="redirectTo" value="/user-volunteer-projects/<%=project.user_id%>">
+                            <input name="userId" type="hidden" value="<%=project.user_id%>">
+                            <button type="submit" class="remove-btn">
+                                Remove 
+                            </button>
+                        </form>
+                    </td> -->
+                </tr>
+                <% })%> 
+            </tbody>
+
+    </table>
+    
+    <% if (user && user.role_name === 'admin') {%>
+        <p class="page-action">
+            <a href="/users-list">Return to Users List</a>
+        </p>
+    <%}%>
+             
+</main>
+<%-include ('partials/footer')%>

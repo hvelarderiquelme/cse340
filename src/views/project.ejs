@@ -45,7 +45,7 @@
             <%});%>
         </div>
 
-        <% if (user && user.role_name === 'user') {%>
+        <% if (user) {%>
             <% if (!isVolunteer) {%>
 
                 <form action="/volunteer/<%= projectDetails.project_id %>" method="POST">

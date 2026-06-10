@@ -39,7 +39,8 @@ const removeVolunteerFromProject = async(user_id, project_id) => {
     
     const queryParams = [user_id, project_id];
     await db.query(query, queryParams);
-}
+};
+
 
 export {
     addNewVolunteer,

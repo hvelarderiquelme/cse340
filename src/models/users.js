@@ -62,7 +62,7 @@ const authenticateUser = async(email, password) => {
 
 const getUsersList = async () => {
     const query =`
-            SELECT u.name, u.email, r.role_name
+            SELECT u.user_id, u.name, u.email, r.role_name
             FROM users u
             JOIN roles r
             ON u.role_id = r.role_id;
@@ -70,6 +70,9 @@ const getUsersList = async () => {
 
     const result = await db.query(query);
 
+    if (result.rows.length === 0) {
+        throw new Error('Error retreiving information');
+    }
     return result.rows;
 };
 
@@ -80,7 +83,8 @@ const getVolunteerProjects = async (user_id) => {
                 p.title,
                 p.description,
                 p.date,
-                p.location
+                p.location,
+                v.user_id
             FROM volunteer v
             JOIN project p
             ON v.project_id = p.project_id
@@ -88,13 +92,35 @@ const getVolunteerProjects = async (user_id) => {
             ORDER BY p.date;`;
     const queryParams = [user_id];
     const result = await db.query(query, queryParams);
+
+    // if (result.rows.length === 0) {
+    //     throw new Error('No project found for this volunteer');
+    // }
     
     return result.rows;
+};
+
+const getUserById = async(userId) =>  {   
+    const query = `
+            SELECT
+                name
+            FROM users
+            WHERE user_id = $1;`;
+
+    const queryParams = [userId];
+    const result = await db.query(query,queryParams);
+
+    if (result.rows.length === 0) {
+        throw new Error('User not found');
+    }
+
+    return result.rows[0].name
 }
 
 export{ 
     createNewUser,
     authenticateUser,
     getUsersList,
-    getVolunteerProjects
+    getVolunteerProjects,
+    getUserById
  }

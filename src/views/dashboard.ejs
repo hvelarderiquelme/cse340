@@ -9,7 +9,7 @@
         </p>
     <%}%>
     
-    <% if (user && user.role_name === 'user') {%>
+    <% if (user) {%>
         <h3>My Volunteer Projects</h3>
 
         <% if (!volunteerProjects || volunteerProjects.length === 0) { %>

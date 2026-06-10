@@ -84,7 +84,7 @@ const showProjectDetailsPage = async (req, res) => {
     const title = "Project Details";
     let isVolunteer = false;
 
-    if(req.session.user && req.session.user.role_name === 'user') {
+    if(req.session.user) {
         isVolunteer = await isUserVolunteer(req.session.user.user_id, projectId);
     }
 

@@ -52,7 +52,8 @@ import {
 
 import {
   newVolunteer,
-  removeVolunteer
+  removeVolunteer,
+  showUserVolunteerProjects
 } from './controllers/volunteers.js';
 
 const router = express.Router();
@@ -118,5 +119,9 @@ router.get('/users-list', requireRole('admin'), showUsersList);
 router.post('/volunteer/:projectId', requiredLogin, newVolunteer);
 //Route to stop volunteering
 router.post('/no-volunteer/:projectId', requiredLogin, removeVolunteer);
+//Route to get list of projects by volunteer
+router.get('/user-volunteer-projects/:userId', requiredLogin, showUserVolunteerProjects);
+//Remonve user fro project by admin
+router.post('/remove-volunteer-by-admin/:projectId', requiredLogin, removeVolunteer);
 
 export default router;
